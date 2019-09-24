@@ -72,14 +72,16 @@ sshagent(['c00c8f81-598f-4b27-8a30-711d25bebeaa']) {
 sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.232.168.199:/opt/apache-tomcat-9.0.24/webapps/maven-web-application.war"
 }
 }
- stage('EmailNotification'){
-    mail to: ragraich@gmail.com, 
+ stage('EmailNotification')
+  {
+    mail to: ragraich@gmail.com,{ 
          subject: 'Build Notification'
          body: '''Build Done, Please check the build log for more details..
          
                   Regards,
-                  Raghavendra R
- }
+                  Raghavendra 
+                  }
+   }
  
  stage("SlackNotification"){
      slackSend baseUrl: 'https://devops-team-bangalore.slack.com/services/hooks/jenkins-ci/', channel: 'build-notification', message: 'Build done through', tokenCredentialId: '12797dc5-eb70-4f19-8e05-8c07bc58d79d'
