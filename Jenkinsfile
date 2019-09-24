@@ -19,11 +19,13 @@ node{
     ])
   ])
   
-  def mavenHome=tool name: "mavenv3.1.1.1", type: "maven"
+  def mavenHome=tool name: "mavenv3.6.2", type: "maven"
     
   stage('CheckouttheCode') {
-   git branch: 'master', credentialsId: '4d6512c4-c101-4f43-aac5-5860f5d9e20c', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'  
+    git branch: 'master',  credentialsId: '809850c3-8f80-4827-80eb-6c039901c5ba', url: 'https://github.com/RaghavRaichur/maven-web-application-1.git'
+  
  }
+ 
   /*
    stage('Checkout'){
      checkout scm
@@ -47,11 +49,12 @@ node{
    }
  */
 
+ /*
  stage('SonarQubeReport')
  {
   sh  "${mavenHome}/bin/mvn sonar:sonar"
  }
-
+*/
   stage('UploadArtifactsIntoNexus')
  {
   sh  "${mavenHome}/bin/mvn deploy"
@@ -63,25 +66,19 @@ node{
  }
  */
 
-stage('DeploytoTomcat'){
-
-   sshagent(['9554f0b8-eda0-486d-9d23-ce7585c32f70']) 
-   {
-     sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.235.70.188:/opt/apache-tomcat-9.0.22/webapps/maven-web-application.war"
-   }
+stage('DeploytoTomcat')
+{
+sshagent(['c00c8f81-598f-4b27-8a30-711d25bebeaa']) {
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.232.168.199:/opt/apache-tomcat-9.0.24/webapps/maven-web-application.war   
+}
 }
  stage('EmailNotification'){
-    mail to: 'devopstrainingblr@gmail.com',
-         bcc: 'devopstrainingblr@gmail.com', 
-         cc: 'devopstrainingblr@gmail.com', 
-         from: 'devopstrainingblr@gmail.com', 
-         replyTo: 'devopstrainingblr@gmail.com', 
+    mail to: ragraich@gmail.com, 
          subject: 'Build Notification'
          body: '''Build Done, Please check the build log for more details..
          
                   Regards,
-                  Mithun Technologies,
-                  9980923226'''
+                  Raghavendra R
  }
  
  stage("SlackNotification"){
