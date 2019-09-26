@@ -20,7 +20,7 @@ node('paytmNode')
     
  stage('Checkout')
  {
-  git branch: 'development', credentialsId: '0f274b35-ba13-48f8-b4ea-cc11beace470', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
+  git branch: 'development', credentialsId: '0f274b35-ba13-48f8-b4ea-cc11beace470', url: 'https://github.com/RaghavRaichur/maven-web-application-1.git'
 
  }
  
