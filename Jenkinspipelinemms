@@ -1,4 +1,4 @@
-node('paytmNode')
+node('Paytm_Node')
 {
     
     echo "GitHub BranhName ${env.BRANCH_NAME}"
