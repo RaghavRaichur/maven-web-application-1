@@ -52,7 +52,7 @@ stage('EmailNotification'){
  Regards,
  MSS,
  Bangalore,
- 9980923226.''', subject: 'Build is Over - MSS', to: 'devopstrainingblr@gmal.com'
+ 9980923226.''', subject: 'Build is Over - MSS', to: 'ragraich@gmail.com'
  }
 
 }
